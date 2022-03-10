@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_habits/core/animation/FadeAnimation.dart';
+import 'package:my_habits/core/animation/fade_animation.dart';
 import 'package:my_habits/core/constants/color_constant.dart';
 import 'package:my_habits/core/constants/image_constant.dart';
 
@@ -34,7 +34,7 @@ class SplashScreen extends StatelessWidget {
                   FadeAnimation(
                       1.2,
                       Text(
-                        "Track kebiasaan kamu mulai dari sekarang dengan mudah.",
+                        "Track your habits from now on easily.",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.grey[700], fontSize: 15),
                       )),

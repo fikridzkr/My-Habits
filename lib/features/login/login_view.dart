@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:my_habits/core/animation/fade_animation.dart';
+import 'package:my_habits/core/ui/shared/app_bar.dart';
+import 'package:my_habits/core/ui/shared/input_field.dart';
 import 'package:my_habits/features/login/controller/login_controller.dart';
 
 class Login extends GetView<LoginController> {
@@ -7,78 +11,102 @@ class Login extends GetView<LoginController> {
 
   @override
   Widget build(context) => Scaffold(
-          body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(36.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // SizedBox(
-                  //   height: 155.0,
-                  //   child: Image.asset(
-                  //     "assets/logo.png",
-                  //     fit: BoxFit.contain,
-                  //   ),
-                  // ),
-                  const SizedBox(height: 45.0),
-                  emailField(),
-                  const SizedBox(height: 25.0),
-                  passwordField(),
-                  const SizedBox(
-                    height: 35.0,
-                  ),
-                  loginButton(context),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                ],
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        appBar: AppBarWidget.base(),
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        const FadeAnimation(
+                            1,
+                            Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.bold),
+                            )),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        FadeAnimation(
+                            1.2,
+                            Text(
+                              "Login to your account",
+                              style: TextStyle(
+                                  fontSize: 15, color: Colors.grey[700]),
+                            )),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Column(
+                        children: const <Widget>[
+                          FadeAnimation(1.2, InputFieldWidget(label: "Email")),
+                          FadeAnimation(
+                              1.3,
+                              InputFieldWidget(
+                                label: "Password",
+                                obscureText: true,
+                              )),
+                        ],
+                      ),
+                    ),
+                    FadeAnimation(
+                        1.4,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Container(
+                            padding: const EdgeInsets.only(top: 3, left: 3),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: const Border(
+                                  bottom: BorderSide(color: Colors.black),
+                                  top: BorderSide(color: Colors.black),
+                                  left: BorderSide(color: Colors.black),
+                                  right: BorderSide(color: Colors.black),
+                                )),
+                            child: MaterialButton(
+                              minWidth: double.infinity,
+                              height: 60,
+                              onPressed: () {},
+                              color: Colors.greenAccent,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50)),
+                              child: const Text(
+                                "Login",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        )),
+                    FadeAnimation(
+                        1.5,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Text("Don't have an account?"),
+                            Text(
+                              "Sign up",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 18),
+                            ),
+                          ],
+                        ))
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
-      ));
-
-  TextField emailField() {
-    return TextField(
-      obscureText: true,
-      style: controller.style,
-      decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Email",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
-  }
-
-  TextField passwordField() {
-    return TextField(
-      obscureText: true,
-      style: controller.style,
-      decoration: InputDecoration(
-          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Password",
-          border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
-    );
-  }
-
-  Material loginButton(BuildContext context) {
-    return Material(
-        elevation: 5.0,
-        borderRadius: BorderRadius.circular(30.0),
-        color: const Color(0xff01A0C7),
-        child: MaterialButton(
-          minWidth: MediaQuery.of(context).size.width,
-          padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          onPressed: () {},
-          child: Text("Login",
-              textAlign: TextAlign.center,
-              style: controller.style
-                  .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
-        ));
-  }
+      );
 }
