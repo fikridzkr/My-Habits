@@ -20,4 +20,18 @@ class AppBarWidget extends AppBar {
           ),
           systemOverlayStyle: SystemUiOverlayStyle.light,
         );
+
+  AppBarWidget.custom({Key? key, required title, actions})
+      : super(
+            key: key,
+            elevation: 0,
+            backgroundColor: Colors.white,
+            titleSpacing: 0.0,
+            centerTitle: false,
+            title: Transform(
+              transform: Matrix4.translationValues(-2.0, 0.0, 0.0),
+              child: title,
+            ),
+            systemOverlayStyle: SystemUiOverlayStyle.light,
+            actions: actions);
 }

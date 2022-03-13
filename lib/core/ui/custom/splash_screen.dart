@@ -1,109 +1,81 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_habits/core/animation/fade_animation.dart';
 import 'package:my_habits/core/constants/color_constant.dart';
-import 'package:my_habits/core/constants/image_constant.dart';
+import 'package:my_habits/core/constants/common_constant.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null) {
+      // User is signed in.
+      Timer(const Duration(seconds: 2), () {
+        Get.offNamed('/home');
+      });
+    } else {
+      Timer(const Duration(seconds: 2), () {
+        Get.offNamed('/main');
+      });
+      // No user is signed in.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  const FadeAnimation(
-                      1,
-                      Text(
-                        "Welcome",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
-                      )),
-                  const SizedBox(
-                    height: 20,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: CustomColor.primaryColour,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              children: const [
+                // Image.asset(
+                //   "assets/images/grocery.png",
+                //   height: 300.0,
+                //   width: 300.0,
+                // ),
+                Text(
+                  Common.welcome,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22.0,
                   ),
-                  FadeAnimation(
-                      1.2,
-                      Text(
-                        "Track your habits from now on easily.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.grey[700], fontSize: 15),
-                      )),
-                ],
-              ),
-              FadeAnimation(
-                  1.4,
-                  Container(
-                    height: MediaQuery.of(context).size.height / 3,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                AssetImage(ImageConstants.onBoardingWelcome))),
-                  )),
-              Column(
-                children: <Widget>[
-                  FadeAnimation(
-                      1.5,
-                      MaterialButton(
-                        minWidth: double.infinity,
-                        height: 60,
-                        onPressed: () {
-                          Get.toNamed('/login');
-                        },
-                        shape: RoundedRectangleBorder(
-                            side: const BorderSide(color: Colors.black),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: const Text(
-                          "Login",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18),
-                        ),
-                      )),
-                  const SizedBox(
-                    height: 20,
+                ),
+                Text(
+                  Common.welcomeDescription,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 18.0,
                   ),
-                  FadeAnimation(
-                      1.6,
-                      Container(
-                        padding: const EdgeInsets.only(top: 3, left: 3),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border: const Border(
-                              bottom: BorderSide(color: Colors.black),
-                              top: BorderSide(color: Colors.black),
-                              left: BorderSide(color: Colors.black),
-                              right: BorderSide(color: Colors.black),
-                            )),
-                        child: MaterialButton(
-                          minWidth: double.infinity,
-                          height: 60,
-                          onPressed: () {
-                            Get.toNamed('/register');
-                          },
-                          color: CustomColor.primaryColour,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50)),
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 18),
-                          ),
-                        ),
-                      ))
-                ],
-              )
-            ],
-          ),
+                ),
+              ],
+            ),
+            const CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            ),
+          ],
         ),
       ),
     );

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_habits/core/constants/color_constant.dart';
 
 class InputFieldWidget extends StatefulWidget {
   final String label;
   final bool obscureText;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
   const InputFieldWidget(
-      {Key? key, required this.label, this.obscureText = false})
+      {Key? key,
+      required this.label,
+      this.obscureText = false,
+      this.validator,
+      required this.controller})
       : super(key: key);
 
   @override
@@ -19,21 +26,31 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
       children: <Widget>[
         Text(
           widget.label,
-          style: const TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
+          style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w400,
+              color: CustomColor.textColour),
         ),
         const SizedBox(
           height: 5,
         ),
-        TextField(
+        TextFormField(
+          validator: widget.validator,
+          controller: widget.controller,
+          style: const TextStyle(fontSize: 18),
           obscureText: widget.obscureText,
           decoration: InputDecoration(
+            focusColor: CustomColor.primaryColour,
+            focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(color: CustomColor.primaryColour, width: 2.0),
+            ),
             contentPadding:
                 const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[400]!)),
+                borderSide: BorderSide(color: CustomColor.greyColour)),
             border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey[400]!)),
+                borderSide: BorderSide(color: CustomColor.greyColour)),
           ),
         ),
         const SizedBox(

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "823438985513-hkhekp4rlirbgtfu9k7fd0cge758f95j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fikridzakir.my_habits",
+            "certificate_hash": "9c55afcc3446443a85910a0bc5a10529e7bfc8fb"
+          }
+        },
+        {
           "client_id": "823438985513-rtdg3m1ic6pd9g7tedb85gludl2s1ndq.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "823438985513-rtdg3m1ic6pd9g7tedb85gludl2s1ndq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "823438985513-q933q2uq4j5cptp1hmukcnonrh6aulj8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fikridzakir.myHabits"
+              }
             }
           ]
         }
