@@ -24,7 +24,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     if (user == null) {
-      Get.offNamed('/main');
+      Get.offNamed('/welcome');
     }
     _fireStore.collection("users").doc(user!.uid).get().then((value) {
       loggedInUser.value = UserModel.fromJson(value.data()!);

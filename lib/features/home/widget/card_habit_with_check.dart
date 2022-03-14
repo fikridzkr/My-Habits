@@ -4,15 +4,14 @@ import 'package:my_habits/core/constants/color_constant.dart';
 import 'package:my_habits/features/home/controller/home_controller.dart';
 import 'package:sizer/sizer.dart';
 
-class CardHabit extends GetWidget<HomeController> {
-  const CardHabit({Key? key, required this.check, required this.name})
+class CardHabitWithCheck extends GetWidget<HomeController> {
+  const CardHabitWithCheck({Key? key, required this.check, required this.name})
       : super(
           key: key,
         );
 
   final String name;
   final bool check;
-
   @override
   Widget build(BuildContext context) {
     return Container(

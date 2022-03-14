@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_habits/core/constants/color_constant.dart';
+import 'package:sizer/sizer.dart';
 
 class ButtonWidget extends MaterialButton {
   ButtonWidget.base({
@@ -25,4 +27,23 @@ class ButtonWidget extends MaterialButton {
             style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
           ),
         );
+  ButtonWidget.create({
+    required Function() onPressed,
+    required String label,
+    Key? key,
+  }) : super(
+            key: key,
+            child: Text(
+              label,
+              style: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w900,
+                  color: CustomColor.primaryColour,
+                  letterSpacing: 2),
+            ),
+            height: 60,
+            onPressed: onPressed,
+            color: CustomColor.secondaryColour,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20)));
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class AppBarWidget extends AppBar {
   AppBarWidget.base({Key? key})
@@ -26,12 +27,11 @@ class AppBarWidget extends AppBar {
             key: key,
             elevation: 0,
             backgroundColor: Colors.white,
-            titleSpacing: 0.0,
+            // titleSpacing: 0.0,
             centerTitle: false,
             title: Transform(
-              transform: Matrix4.translationValues(-2.0, 0.0, 0.0),
+              transform: Matrix4.translationValues(1.0.w, 0.0, 0.0),
               child: title,
             ),
-            systemOverlayStyle: SystemUiOverlayStyle.light,
             actions: actions);
 }

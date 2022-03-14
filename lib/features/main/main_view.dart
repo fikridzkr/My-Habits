@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:my_habits/core/constants/color_constant.dart';
-import 'package:my_habits/core/constants/common_constant.dart';
-import 'package:my_habits/core/ui/custom/splash_screen.dart';
+import 'package:get/get.dart';
+import 'package:my_habits/features/history/history_view.dart';
+import 'package:my_habits/features/home/home_view.dart';
+import 'package:my_habits/features/main/controller/main_controller.dart';
+import 'package:my_habits/features/main/widget/bottom_navigation_bar.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends GetView<MainController> {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: Common.myHabits,
-      theme: ThemeData(
-        primarySwatch: CustomColor.primaryColour,
-      ),
-      home: const SplashScreen(),
+    return Scaffold(
+      bottomNavigationBar: const BottomNavigatioBarWidget(),
+      body: Obx(() => IndexedStack(
+            index: controller.tabIndex.value,
+            children: const [Home(), History()],
+          )),
     );
   }
 }

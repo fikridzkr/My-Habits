@@ -2,7 +2,8 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_habits/core/constants/common_constant.dart';
-import 'package:my_habits/features/home/widget/card_habit.dart';
+import 'package:my_habits/core/ui/shared/button.dart';
+import 'package:my_habits/features/home/widget/card_habit_with_check.dart';
 import 'package:sizer/sizer.dart';
 import 'package:my_habits/core/constants/color_constant.dart';
 import 'package:my_habits/features/home/controller/home_controller.dart';
@@ -18,7 +19,7 @@ class BodyHome extends GetWidget<HomeController> {
         margin: const EdgeInsets.only(top: 15),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(38), topRight: Radius.circular(30)),
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
           color: CustomColor.primaryColour,
         ),
         child: Padding(
@@ -56,18 +57,17 @@ class BodyHome extends GetWidget<HomeController> {
                 },
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.data.length,
-                    itemBuilder: (context, i) {
-                      final data = controller.data[i];
-                      return CardHabit(check: data.check, name: data.name);
-                    },
+                  child: ListView(
+                children: [
+                  for (final item in controller.data)
+                    CardHabitWithCheck(check: item.check, name: item.name),
+                  Divider(
+                    color: CustomColor.secondaryColour,
                   ),
-                ),
-              ),
+                  ButtonWidget.create(
+                      onPressed: () => {}, label: Common.createHabit)
+                ],
+              ))
             ],
           ),
         ));

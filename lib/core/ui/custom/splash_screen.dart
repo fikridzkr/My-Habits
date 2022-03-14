@@ -22,11 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
     if (user != null) {
       // User is signed in.
       Timer(const Duration(seconds: 2), () {
-        Get.offNamed('/home');
+        Get.offNamed('/main');
       });
     } else {
       Timer(const Duration(seconds: 2), () {
-        Get.offNamed('/main');
+        Get.offNamed('/welcome');
       });
       // No user is signed in.
     }

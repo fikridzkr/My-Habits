@@ -20,9 +20,11 @@ dependencies:
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.10
   cloud_firestore: ^3.1.10
+  # Date
+  date_picker_timeline: ^1.2.3
+  table_calendar: ^3.0.4
   # Utilities
   cupertino_icons: ^1.0.2
-  date_picker_timeline: ^1.2.3
 
 dev_dependencies:
   flutter_test:
