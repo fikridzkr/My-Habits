@@ -13,6 +13,8 @@ import 'package:my_habits/features/login/login_bindings.dart';
 import 'package:my_habits/features/login/login_view.dart';
 import 'package:my_habits/features/main/main_bindings.dart';
 import 'package:my_habits/features/main/main_view.dart';
+import 'package:my_habits/features/profile/profile_bindings.dart';
+import 'package:my_habits/features/profile/profile_view.dart';
 import 'package:my_habits/features/register/register_bindings.dart';
 import 'package:my_habits/features/register/register_view.dart';
 import 'package:sizer/sizer.dart';
@@ -68,12 +70,12 @@ void main() async {
           page: () => const History(),
           binding: HistoryBinding(),
         ),
-        // GetPage(
-        //   name: '/profile',
-        //   transition: Transition.cupertino,
-        //   page: () => const Home(),
-        //   binding: HomeBinding(),
-        // ),
+        GetPage(
+          name: '/profile',
+          transition: Transition.cupertino,
+          page: () => const Profile(),
+          binding: ProfileBinding(),
+        ),
       ],
     ),
   ));

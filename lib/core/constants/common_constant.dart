@@ -4,6 +4,7 @@ class Common {
   static const description = "Track your habit's.";
   static const welcome = "Welcome";
   static const welcomeDescription = "Track your habits from now on easily.";
+  static const version = 'Version 1.0.0';
 
   /* Auth related */
   static const login = "Login";
